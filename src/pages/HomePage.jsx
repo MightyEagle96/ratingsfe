@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import "./HomePage.css";
 import { Button, TextField, Typography } from "@mui/material";
 import { httpService } from "../services";
+import { Spinner } from "react-bootstrap";
 
 function HomePage() {
   const [data, setData] = useState({});
-
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) =>
     setData({ ...data, [e.target.name]: e.target.value });
 
   const register = async () => {
     const path = "register";
-
+    setLoading(true);
     const res = await httpService.post(path, data);
 
     if (res) {
       localStorage.setItem("voter", JSON.stringify(res.data));
       window.location.assign("/vote");
     }
+    setLoading(false);
   };
   return (
     <div>
@@ -62,7 +64,7 @@ function HomePage() {
             </div>
             <div className="mt-3">
               <Button fullWidth variant="contained" onClick={register}>
-                Register to vote
+                {loading ? <Spinner /> : "Register to vote"}
               </Button>
             </div>
           </div>
