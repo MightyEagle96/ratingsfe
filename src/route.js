@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
+import MyVotes from "./pages/MyVotes";
 import VotePage from "./pages/VotePage";
 
 function MainRoutes() {
@@ -9,6 +10,7 @@ function MainRoutes() {
     { path: "/", component: HomePage },
     { path: "/about", component: AboutPage },
     { path: "/vote", component: VotePage },
+    { path: "/myVotes", component: MyVotes },
   ];
 
   return (

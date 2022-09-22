@@ -5,6 +5,7 @@ import {
   Button,
   Skeleton,
   Stack,
+  Chip,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { parameters } from "../labels";
@@ -73,15 +74,18 @@ function VotePage() {
     setLoading(true);
 
     setLoadingButton(facilitator);
-    // const path = `rateFacilitator/${voter._id}`;
-    // const res = await httpService.post(path, { facilitator, votes });
-    // if (res) {
-    //   setRatings((old) => [...old, res.data]);
-    // }
+    const path = `rateFacilitator/${voter._id}`;
+    const res = await httpService.post(path, { facilitator, votes });
+    if (res) {
+      setRatings(res.data);
+
+      setLoading(false);
+      setLoadingButton(null);
+    }
   };
 
   const disabled = (facilitator) => {
-    const exists = ratings.find((c) => c.facilitator === facilitator);
+    const exists = ratings.find((c) => c.facilitator._id === facilitator);
     if (exists) {
       return true;
     }
@@ -89,10 +93,12 @@ function VotePage() {
   };
 
   const getVotes = async () => {
-    const path = "getVotes";
+    if (voter) {
+      const path = "getVotes";
 
-    const res = await httpService.get(path);
-    setRatings(res.data);
+      const res = await httpService.post(path, { voter: voter._id });
+      setRatings(res.data);
+    }
   };
   return (
     <div>
@@ -175,6 +181,11 @@ function VotePage() {
                 </div>
               </div>
             ))}
+            <div className="mt-3 text-dark mb-3">
+              <Typography>Thank you for rating the facilitators</Typography>
+
+              <Chip component="a" href="/myVotes" clickable label="My votes" />
+            </div>
           </div>
         ) : (
           <div className="row">
