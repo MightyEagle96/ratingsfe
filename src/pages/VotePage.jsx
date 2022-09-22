@@ -2,6 +2,7 @@ import { Typography, Slider, Avatar, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { parameters } from "../labels";
 import { httpService, voter } from "../services";
+import Swal from "sweetalert2";
 
 function VotePage() {
   const [instructors, setInstructors] = useState([]);
@@ -13,7 +14,6 @@ function VotePage() {
 
     const res = await httpService.get(path);
     if (res) {
-      console.log(res.data);
       setInstructors(res.data);
     }
   };
@@ -60,8 +60,18 @@ function VotePage() {
     const path = `rateFacilitator/${voter._id}`;
     const res = await httpService.post(path, { facilitator, votes });
     if (res) {
-      console.log(res.data);
       setRatings((old) => [...old, res.data]);
+
+      if (ratings.length === instructors.length) {
+        // Swal.fire({ icon: "success" });
+        Swal.fire({
+          icon: "success",
+          title: "RATINGS COMPLETE",
+          text: "Thank you for taking out time to rate the facilitators",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     }
   };
 
