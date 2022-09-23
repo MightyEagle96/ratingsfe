@@ -181,9 +181,17 @@ function VotePage() {
               </div>
             ))}
             <div className="mt-3 text-dark mb-3">
-              <Typography>Thank you for rating the facilitators</Typography>
+              <Typography className="mb-3" fontFamily={"Anton"}>
+                Thank you for rating the facilitators
+              </Typography>
 
-              <Chip component="a" href="/myVotes" clickable label="My votes" />
+              <Chip
+                color="error"
+                component="a"
+                href="/myVotes"
+                clickable
+                label="My votes"
+              />
             </div>
           </div>
         ) : (
