@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Avatar, Skeleton, Stack, Typography } from "@mui/material";
 import { httpService } from "../services";
 import { blue } from "@mui/material/colors";
+import PeopleThatVoted from "./PeopleThatVoted";
 
 function ResultsPage() {
   const [results, setResults] = useState([]);
@@ -13,8 +14,9 @@ function ResultsPage() {
 
     const res = await httpService.get(path);
 
-    if (res) {
+    if (res && res.data) {
       setResults(res.data);
+
       setLoading(false);
     }
     setLoading(false);
@@ -46,9 +48,14 @@ function ResultsPage() {
                         </Typography>
                       </div>
                       <div className="d-flex align-items-center">
-                        <Avatar sx={{ backgroundColor: blue[700] }}>
-                          <Typography>{r.votes}</Typography>
-                        </Avatar>
+                        <div>
+                          <div className="d-flex justify-content-center">
+                            <Avatar sx={{ backgroundColor: blue[700] }}>
+                              <Typography>{r.votes}</Typography>
+                            </Avatar>
+                          </div>
+                          <PeopleThatVoted facilitator={r._id} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -73,9 +80,14 @@ function ResultsPage() {
                         </Typography>
                       </div>
                       <div className="d-flex align-items-center">
-                        <Avatar sx={{ backgroundColor: blue[700] }}>
-                          <Typography>{r.votes}</Typography>
-                        </Avatar>
+                        <div>
+                          <div className="d-flex justify-content-center">
+                            <Avatar sx={{ backgroundColor: blue[700] }}>
+                              <Typography>{r.votes}</Typography>
+                            </Avatar>
+                          </div>
+                          <PeopleThatVoted facilitator={r._id} />
+                        </div>
                       </div>
                     </div>
                   </div>
