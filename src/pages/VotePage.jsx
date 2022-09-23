@@ -12,7 +12,6 @@ import { parameters } from "../labels";
 import { httpService, voter } from "../services";
 import { pink } from "@mui/material/colors";
 import { Spinner } from "react-bootstrap";
-import Swal from "sweetalert2";
 
 function VotePage() {
   const [fetching, setFetching] = useState(false);

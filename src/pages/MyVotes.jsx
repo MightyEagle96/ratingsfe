@@ -7,7 +7,7 @@ import { Logout, Star, StarBorder } from "@mui/icons-material";
 function MyVotes() {
   const [fetching, setFetching] = useState(false);
   const [ratings, setRatings] = useState([]);
-  const [perfect, setPerfect] = useState([0, 1, 2, 3, 4]);
+  const perfect = [0, 1, 2, 3, 4];
 
   const getVotes = async () => {
     if (voter) {

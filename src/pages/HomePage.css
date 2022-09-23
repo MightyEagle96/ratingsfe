@@ -54,3 +54,13 @@
     ),
     url("../images/milad-fakurian-seA-FPPXL-M-unsplash.jpg");
 }
+
+.footer {
+  min-height: 20vh;
+  background-image: linear-gradient(
+    to right bottom,
+    rgb(205, 205, 205),
+    rgb(251, 234, 234),
+    white
+  );
+}

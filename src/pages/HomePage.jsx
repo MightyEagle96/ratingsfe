@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./HomePage.css";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, InputAdornment } from "@mui/material";
+import { Person, Phone } from "@mui/icons-material";
 import { httpService } from "../services";
 import { Spinner } from "react-bootstrap";
 
@@ -27,20 +28,79 @@ function HomePage() {
         <div>
           <div className="d-none d-md-block">
             <Typography fontFamily={"Anton"} variant="h2" color="white">
-              SEMINAR VOTING
+              RATE YOUR FACILITATORS
             </Typography>
           </div>
           <div className="d-sm-block d-md-none">
             <Typography fontFamily={"Anton"} variant="h4" color="white">
-              SEMINAR VOTING
+              RATE YOUR FACILITATORS
             </Typography>
           </div>
         </div>
       </div>
       <div className="container mt-3">
-        <div className="row">
-          <div className="col-md-3">
-            <Typography fontFamily={"Lato"} gutterBottom>
+        <div className="d-none d-md-block">
+          <div className="d-flex justify-content-center ">
+            <div className="col-md-4">
+              <Typography
+                fontFamily={"Lato"}
+                color="GrayText"
+                fontWeight={600}
+                textAlign={"center"}
+                gutterBottom
+              >
+                Enter your name and phone number
+              </Typography>
+
+              <div className="mb-3">
+                <TextField
+                  fullWidth
+                  label="Name"
+                  name="name"
+                  onChange={handleChange}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+
+              <div className="mb-3">
+                <TextField
+                  fullWidth
+                  label="Phone Number"
+                  name="phoneNumber"
+                  type="number"
+                  onChange={handleChange}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Phone />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+              <div className="mt-3">
+                <Button fullWidth variant="contained" onClick={register}>
+                  {loading ? <Spinner animation="grow" /> : "Register"}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="d-sm-block d-md-none">
+          <div className="col-md-4">
+            <Typography
+              fontFamily={"Lato"}
+              color="GrayText"
+              fontWeight={600}
+              textAlign={"center"}
+              gutterBottom
+            >
               Enter your name and phone number
             </Typography>
 
@@ -50,6 +110,13 @@ function HomePage() {
                 label="Name"
                 name="name"
                 onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </div>
 
@@ -60,15 +127,21 @@ function HomePage() {
                 name="phoneNumber"
                 type="number"
                 onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Phone />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </div>
             <div className="mt-3">
               <Button fullWidth variant="contained" onClick={register}>
-                {loading ? <Spinner /> : "Register to vote"}
+                {loading ? <Spinner animation="grow" /> : "Register"}
               </Button>
             </div>
           </div>
-          <div className="col-md-3 border-start"></div>
         </div>
       </div>
     </div>
