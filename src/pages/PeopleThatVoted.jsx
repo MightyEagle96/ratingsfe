@@ -8,7 +8,6 @@ export default function PeopleThatVoted({ facilitator }) {
     const res = await httpService.post("peopleThatVoted", { facilitator });
 
     if (res) {
-      console.log(res.data);
       setVotes(res.data);
     }
   };
@@ -21,10 +20,8 @@ export default function PeopleThatVoted({ facilitator }) {
     }, 30 * 1000);
   }, []);
   return (
-    <div>
-      <Typography variant="caption" textAlign={"center"}>
-        {votes} votes counted
-      </Typography>
-    </div>
+    <Typography variant="caption" textAlign={"right"}>
+      {votes} votes counted
+    </Typography>
   );
 }

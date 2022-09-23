@@ -63,8 +63,8 @@ function ResultsPage() {
                         </Typography>
                       </div>
                       <div className="d-flex align-items-center">
-                        <div>
-                          <div className="d-flex justify-content-center">
+                        <div className="col-12">
+                          <div className="d-flex justify-content-end">
                             <Avatar sx={{ backgroundColor: blue[700] }}>
                               <Typography>{r.votes}</Typography>
                             </Avatar>
@@ -95,13 +95,15 @@ function ResultsPage() {
                         </Typography>
                       </div>
                       <div className="d-flex align-items-center">
-                        <div>
-                          <div className="d-flex justify-content-center">
+                        <div className="col-12">
+                          <div className="d-flex justify-content-end">
                             <Avatar sx={{ backgroundColor: blue[700] }}>
                               <Typography>{r.votes}</Typography>
                             </Avatar>
                           </div>
-                          <PeopleThatVoted facilitator={r._id} />
+                          <div className="d-flex text-right mt-1">
+                            <PeopleThatVoted facilitator={r._id} />
+                          </div>
                         </div>
                       </div>
                     </div>
