@@ -15,6 +15,10 @@ export default function PeopleThatVoted({ facilitator }) {
 
   useEffect(() => {
     getData();
+
+    setInterval(() => {
+      getData();
+    }, 30 * 1000);
   }, []);
   return (
     <div>

@@ -24,6 +24,10 @@ function ResultsPage() {
 
   useEffect(() => {
     getResults();
+
+    setInterval(() => {
+      getResults();
+    }, 30 * 1000);
   }, []);
   return (
     <div>
