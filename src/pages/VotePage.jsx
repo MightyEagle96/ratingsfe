@@ -138,6 +138,7 @@ function VotePage() {
                           <div className="col-8">
                             {" "}
                             <Slider
+                              disabled={disabled(c._id)}
                               defaultValue={0}
                               aria-label="Default"
                               valueLabelDisplay="auto"
@@ -164,35 +165,44 @@ function VotePage() {
                       Total Assessment: {inTotals[index] || 0}/5
                     </Typography>
                     <div className="mt-3">
-                      <Button
-                        variant="contained"
-                        disabled={disabled(c._id)}
-                        onClick={() => rateFacilitator(c._id, inTotals[index])}
-                      >
-                        {loading && loadingButton === c._id ? (
-                          <Spinner animation="grow" />
-                        ) : (
-                          "rate this facilitator"
-                        )}
-                      </Button>
+                      {!disabled(c._id) ? (
+                        <Button
+                          variant="contained"
+                          disabled={disabled(c._id)}
+                          onClick={() =>
+                            rateFacilitator(c._id, inTotals[index])
+                          }
+                        >
+                          {loading && loadingButton === c._id ? (
+                            <Spinner animation="grow" />
+                          ) : (
+                            "rate this facilitator"
+                          )}
+                        </Button>
+                      ) : (
+                        <Typography fontFamily={"Anton"}>RATED</Typography>
+                      )}
+                      {/*  */}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-            <div className="mt-3 text-dark mb-3">
-              <Typography className="mb-3" fontFamily={"Anton"}>
-                Thank you for rating the facilitators
-              </Typography>
+            {ratings.length > 0 ? (
+              <div className="mt-3 text-dark mb-3">
+                <Typography className="mb-3" fontFamily={"Anton"}>
+                  Thank you for rating the facilitators
+                </Typography>
 
-              <Chip
-                color="error"
-                component="a"
-                href="/myVotes"
-                clickable
-                label="My votes"
-              />
-            </div>
+                <Chip
+                  color="error"
+                  component="a"
+                  href="/myVotes"
+                  clickable
+                  label="My votes"
+                />
+              </div>
+            ) : null}
           </div>
         ) : (
           <div className="row">
