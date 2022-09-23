@@ -22,11 +22,22 @@ function ResultsPage() {
     setLoading(false);
   };
 
+  const getResultsInterval = async () => {
+    const path = "overallVotes";
+
+    const res = await httpService.get(path);
+
+    if (res && res.data) {
+      setResults(res.data);
+
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     getResults();
 
     setInterval(() => {
-      getResults();
+      getResultsInterval();
     }, 30 * 1000);
   }, []);
   return (
